@@ -1,7 +1,7 @@
 import java.util.Arrays;
 
 public class Gang extends Kamer {
-    private String type = "gang";
+    private String type = "Gang";
     private int[] aangrenzend;
 
     public Gang(int index, int[] locaties) {

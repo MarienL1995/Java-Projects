@@ -52,16 +52,18 @@ public class Meubel {
         Random r2 = new Random();
         int getal = r1.nextInt(91 + plaatsingspercentage);
         int getal2 = r2.nextInt(basicItems.size() - 1);
-        int teller = 1;
         for (int i = 0; i < lijstContainers.size(); i++) {
             for (int j = 0; j < 5; j++) {
+                int teller = 1;
                 if (getal >= 50) {
                     if (getal >= 90 && sleutelItems.size() == 3) {
                         lijstContainers.get(i).inhoud.put(teller, sleutelItems.get(0));
                         sleutelItems.remove(0);
                         plaatsingspercentage = 0;
+                        teller ++;
                     } else {
                         lijstContainers.get(i).inhoud.put(teller, basicItems.get(getal2));
+                        teller ++;
                         if (basicItems.get(getal2) instanceof Wapen) {
                             basicItems.remove(getal2);
                         }

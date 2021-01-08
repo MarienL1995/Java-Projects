@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 public class Player {
     private String naam;
@@ -11,6 +12,7 @@ public class Player {
     private Kamer locatie;
     private int aanvalsKracht = 0;
     private HashMap<Integer, Item> inventaris = new HashMap<>();
+    private int tellerInventaris = 1;
 
     public Player(String naam, Rol klasse, Kamer locatie) {
         this.naam = naam;
@@ -72,39 +74,112 @@ public class Player {
         this.locatie = locatie;
     }
 
+    public void doorzoekKamer(){
+        int teller  = 1;
+        for (Meubel m : locatie.getMeubilair()) {
+            System.out.println(teller + ": " + m.getOmschrijving());
+            teller ++ ;
+        }
+        if (locatie.getMeubilair().size() > 0){
+            kiesMeubel();
+        }
+    }
+    public void kiesMeubel(){
+       try {
+           int keuze = Integer.parseInt(JOptionPane.showInputDialog(null, "Welke meubel ?"));
+           Meubel m = locatie.getMeubilair().get(keuze);
+           doorzoekMeubel(m);
+       } catch (Exception e){
+           System.out.println("Geen geldige keuze");
+           kiesMeubel();
+       }
+    }
+
     public void doorzoekMeubel(Meubel m) { // gaat alle containers van het gekozen meubelStuk af.
-        Iterator it = m.getContainers().values().iterator();
-        int teller = 0;
-        while (it.hasNext()) {
-            Container c = (Container) it.next();
-            System.out.println(teller + ": " + c.getNaam());
-            teller++;
+        if (m.getContainers().size() > 0) {
+            Iterator it = m.getContainers().values().iterator();
+            int teller = 1;
+            while (it.hasNext()) {
+                Container c = (Container) it.next();
+                System.out.println(teller + ": " + c.getNaam());
+                teller++;
+            }
+            kiesContainer(m);
+        } else {
+            System.out.println("Meubel is leeg , kies een andere.");
+            doorzoekKamer();
         }
 
     }
 
-    public void maakKeuzeContainer(Meubel meubel) { // Vraagt naar de gekozen Container en gaat deze dan openen ( WIP )
-        boolean keuzeOk = false;
-        int teller = 1;
-        while (!keuzeOk)
-            try {
-                System.out.println("Voor test redenen de volledige container met spaties ingeven");
-                String keuze = JOptionPane.showInputDialog(null, "Welke container ?");
-                Iterator it = meubel.getContainers().values().iterator();
-                while (it.hasNext()) {
-                    Container c = (Container) it.next();
-                    System.out.println(teller + ": " + c.getNaam());
-                    keuzeOk = true;
-                    if (keuze.toLowerCase() == c.getNaam().toLowerCase()) {
-                        //  maakKeuzeItem(c.getNaam());
-                    }
-                }
-            } catch (NullPointerException ignore) {
-                System.out.println("Ongeldige keuze");
+    public void kiesContainer(Meubel meubel) { // Vraagt naar de gekozen Container en gaat deze dan openen ( WIP )
+        try {
+            int keuze = Integer.parseInt(JOptionPane.showInputDialog(null, "Welke container ?"));
+            Container c = meubel.getContainers().get(keuze);
+            doorzoekContainer(c,meubel);
+        } catch (Exception e){
+            System.out.println("Geen geldige keuze");
+            doorzoekMeubel(meubel);
+        }
+    }
+    public void doorzoekContainer(Container container,Meubel meubel){
+        if (container.inhoud.size()>0) {
+            Iterator it = container.inhoud.values().iterator();
+            int teller = 1;
+            while (it.hasNext()) {
+                Item i = (Item) it.next();
+                System.out.println(teller + ": " + i.getNaam() + ": " + i.getOmschrijving());
+                teller++;
             }
+            maakKeuzeItem(container,meubel);
+        } else {
+            System.out.println("Container is leeg, kies een andere.");
+            doorzoekMeubel(meubel);
+        }
     }
 
-    public void maakKeuzeItem() {
+    public void maakKeuzeItem(Container container,Meubel meubel) {
+        try {
+            int keuze = Integer.parseInt(JOptionPane.showInputDialog(null, "Welk item ?"));
+            if (container.inhoud.size() > 0) {
+                naarInvetaris(keuze, container,meubel);
+            }
 
+        } catch (Exception e){
+            System.out.println("Geen geldige keuze");
+            doorzoekContainer(container,meubel);
+        }
+    }
+    public void naarInvetaris(Integer keuze,Container container,Meubel meubel){
+        Iterator iteratorItems = container.inhoud.entrySet().iterator();
+        while (iteratorItems.hasNext()){
+            Map.Entry paar =(Map.Entry) iteratorItems.next();
+            int sleutel = (int)paar.getKey();
+            Item i = (Item) paar.getValue();
+            System.out.println(sleutel);
+            System.out.println(i);
+            if (keuze == sleutel){
+                inventaris.put(sleutel, (Item) paar.getValue());
+                iteratorItems.remove();
+            }
+        }
+        System.out.println(inventaris);
+        doorzoekContainer(container,meubel);
+
+    }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "naam='" + naam + '\'' +
+                ", klasse=" + klasse +
+                ", levenspunten=" + levenspunten +
+                ", geestpunten=" + geestpunten +
+                ", uitgerust=" + uitgerust +
+                ", locatie=" + locatie +
+                ", aanvalsKracht=" + aanvalsKracht +
+                ", inventaris=" + inventaris +
+                ", tellerInventaris=" + tellerInventaris +
+                '}';
     }
 }

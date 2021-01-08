@@ -70,8 +70,8 @@ public class TestSpel {
         lijstMeubels.add(meubel3);
         lijstMeubels.add(meubel4);
         for (Meubel meubel : lijstMeubels) { // * // ( ArrayList )
-            meubel.vulContainerNiveau1(lijstAlleItems, keyItems, lijstComponenten, plaatsingsPercentage); // * // (Random , ArrayList )
             meubel.vulMeubel(lijstComponenten); // * // ( ArrayList , HashMap , Random )
+            meubel.vulContainerNiveau1(lijstAlleItems, keyItems, lijstComponenten, plaatsingsPercentage); // * // (Random , ArrayList )
         }
         //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         // Aanmaak kamers en gangen
@@ -109,8 +109,8 @@ public class TestSpel {
         for (Meubel m : m1.getHuidigelocatie().getMeubilair()) {
             m.vulContainerNiveau1(lijstAlleItems, keyItems, lijstComponenten, plaatsingsPercentage);
         }
-        m1.getBeschrijvingHuidigeLocatie(); // * // (ArrayList)
-        m1.Verplaats(); // * // < ---- hier worden drie verschillende functies gebruikt die worden gestart in Verplaats() (ArrayList,Iterator,Switch)
+       // m1.getBeschrijvingHuidigeLocatie(); // * // (ArrayList)
+       // m1.Verplaats(); // * // < ---- hier worden drie verschillende functies gebruikt die worden gestart in Verplaats() (ArrayList,Iterator,Switch)
         //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         // Aanmaak Rollen
         //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -45,9 +45,17 @@ public class Map {
             while (richting <= 0) {
                 System.out.println("Geen geldige richting");
                 gekozenrichting = JOptionPane.showInputDialog("Geef een richting in");
-                richting = controleerToegelaten(gekozenrichting);
+                try {
+                    richting = controleerToegelaten(gekozenrichting);
+                } catch (Exception e){
+                    System.out.println("Ongeldige input.");
+                }
             }
-            nietbeschikbaar = controleerBeschikbaar(richting);
+            try {
+                nietbeschikbaar = controleerBeschikbaar(richting);
+            } catch (Exception e){
+                System.out.println("Ongeldig gegeven.");
+            }
         }
         System.out.println("//----------------------------------------------------------------------------//");
 
@@ -65,38 +73,42 @@ public class Map {
     public int controleerToegelaten(String richting) { // controleert of de input correct is om dan Kamer volgens de richting aan te duiden.
         int[] mogelijkeRichtingen = getHuidigelocatie().getAangrenzend();
         int gekozenrichting;
-        String lowercase = richting.toLowerCase();
-        switch (lowercase) {
-            case "no":
-                gekozenrichting = mogelijkeRichtingen[0];
-                break;
-            case "noord":
-                gekozenrichting = mogelijkeRichtingen[0];
-                break;
-            case "n":
-                gekozenrichting = mogelijkeRichtingen[0];
-                break;
-            case "zuid":
-                gekozenrichting = mogelijkeRichtingen[2];
-                break;
-            case "z":
-                gekozenrichting = mogelijkeRichtingen[2];
-                break;
-            case "west":
-                gekozenrichting = mogelijkeRichtingen[3];
-                break;
-            case "w":
-                gekozenrichting = mogelijkeRichtingen[3];
-                break;
-            case "oost":
-                gekozenrichting = mogelijkeRichtingen[1];
-                break;
-            case "o":
-                gekozenrichting = mogelijkeRichtingen[1];
-                break;
-            default:
-                gekozenrichting = 0;
+        if (richting != null) {
+            String lowercase = richting.toLowerCase();
+            switch (lowercase) {
+                case "no":
+                    gekozenrichting = mogelijkeRichtingen[0];
+                    break;
+                case "noord":
+                    gekozenrichting = mogelijkeRichtingen[0];
+                    break;
+                case "n":
+                    gekozenrichting = mogelijkeRichtingen[0];
+                    break;
+                case "zuid":
+                    gekozenrichting = mogelijkeRichtingen[2];
+                    break;
+                case "z":
+                    gekozenrichting = mogelijkeRichtingen[2];
+                    break;
+                case "west":
+                    gekozenrichting = mogelijkeRichtingen[3];
+                    break;
+                case "w":
+                    gekozenrichting = mogelijkeRichtingen[3];
+                    break;
+                case "oost":
+                    gekozenrichting = mogelijkeRichtingen[1];
+                    break;
+                case "o":
+                    gekozenrichting = mogelijkeRichtingen[1];
+                    break;
+                default:
+                    gekozenrichting = 0;
 
+            }
+        } else {
+            gekozenrichting = 0;
         }
         return gekozenrichting;
     }

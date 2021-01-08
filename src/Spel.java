@@ -40,7 +40,7 @@ public class Spel {
 
     public void beschikbareRichtingen() { // Controleert welke indexen vanuit de huidige locatie beschikbaar zijn.
         int[] mogelijkeRichtingen = plattegrond.getHuidigelocatie().getAangrenzend();
-        for (int i = 0; i < mogelijkeRichtingen.length - 1; i++) {
+        for (int i = 0; i < mogelijkeRichtingen.length ; i++) {
             if (mogelijkeRichtingen[i] >= 0) {
                 zetRichtingenOm(i);
             }
@@ -80,8 +80,8 @@ public class Spel {
             }
         }
         if (keuze == 1) {
-            plattegrond.Verplaats();
-            GeefOpties();
+            speler.doorzoekKamer();
+          //  GeefOpties();
         } else {
             plattegrond.Verplaats();
             GeefOpties();
