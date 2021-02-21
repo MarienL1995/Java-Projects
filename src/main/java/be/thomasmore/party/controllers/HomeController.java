@@ -16,6 +16,7 @@ public class HomeController {
     private Date date = new Date();
     private SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
     private LocalDateTime date2 = LocalDateTime.now().plusDays(30);
+    private final String[] venueNames = {"De Loods", "De Club", "De Hanger", "Zapoi","Kuub","Cuba Libre"};
     @GetMapping({"/","/home"})
     public String home(Model model){
         model.addAttribute("mySpecialNumber",mySpecialNumber);
@@ -33,11 +34,12 @@ public class HomeController {
     }
     @GetMapping({"/venuedetails","/venuedetails/{venueName}"})
     public String venueDetails(Model model , @PathVariable(required = false) String venueName){
-        model.addAttribute("venueName",(venueName != null) ? venueName : "--no venue chosen --");
+        model.addAttribute("venueName",venueName);
         return "venuedetails";
     }
     @GetMapping("/venuelist")
         public String venueList(Model model){
+        model.addAttribute("venueNames",venueNames);
         return "venuelist";
     }
 }
