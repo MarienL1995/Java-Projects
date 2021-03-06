@@ -12,10 +12,80 @@
 <div class="row1">
     <div class="row1content">
         <h2>venues</h2>
-        <div th:each="venue : ${venues}" >
-            <a class="buttons"
-               th:href="@{|venuedetails/${venue.id}|}"
-               th:text="${venue.getVenueName()}">venue</a>
+        <div class="filters">
+            <div th:if="${filter == false}">
+                <a th:href="@{|/venuelist/filter|}">filter</a>
+            </div>
+            <div th:if="${filter == true}">
+                <a th:href="@{|/venuelist|}">-</a>
+                <form>
+                    <div class="onefilter">
+                        <input type="submit" value="search" class="buttonLook filterButton">
+                    </div>
+                    <h3>Capacity</h3>
+                    <div class="onefilter">
+                        <label for="minCapacity" class="filtername">min</label>
+                        <input type="number" id="minCapacity" name="minCapacity" th:value="${zoek}" step="50"> persons
+                    </div>
+                    <div class="onefilter">
+                        <label for="maxCapacity" class="filtername">max</label>
+                        <input type="number" id="maxCapacity" name="maxCapacity" th:value="${zoek2}" step="50"> persons
+                    </div>
+                    <div class="onefilter">
+                        <label for="distanceToTransport" class="filtername">distance</label>
+                        <input type="number" id="distanceToTransport" name="distanceToTransport" step="1"> max distance
+                    </div>
+                    <h2>Food</h2>
+                    <div class="onefilter">
+                        <label for="foodYes" class="filtername">yes</label>
+                        <input type="radio" id="foodYes" name="filterFood" value="yes" th:checked="false">
+                    </div>
+                    <div class="onefilter">
+                        <label for="foodNo" class="filtername">no</label>
+                        <input type="radio" id="foodNo" name="filterFood" value="no" th:checked="false">
+                    </div>
+                    <div class="onefilter">
+                        <label for="foodAll" class="filtername">all</label>
+                        <input type="radio" id="foodAll" name="filterFood" value="all" th:checked="false">
+                    </div>
+                    <h2>Indoor</h2>
+                    <div class="onefilter">
+                        <label for="indoorYes" class="filtername">yes</label>
+                        <input type="radio" id="indoorYes" name="filterIndoor" value="yes">
+                    </div>
+                    <div class="onefilter">
+                        <label for="indoorNo" class="filtername">no</label>
+                        <input type="radio" id="indoorNo" name="filterIndoor" value="no">
+                    </div>
+                    <div class="onefilter">
+                        <label for="indoorAll" class="filtername">all</label>
+                        <input type="radio" id="indoorAll" name="filterIndoor" value="all">
+                    </div>
+                    <h2>Outdoor</h2>
+                    <div class="onefilter">
+                        <label for="outdoorYes" class="filtername">yes</label>
+                        <input type="radio" id="outdoorYes" name="filterOutdoor" value="yes">
+                    </div>
+                    <div class="onefilter">
+                        <label for="indoorNo" class="filtername">no</label>
+                        <input type="radio" id="outdoorNo" name="filterOutdoor" value="no">
+                    </div>
+                    <div class="onefilter">
+                        <label for="indoorAll" class="filtername">all</label>
+                        <input type="radio" id="outdoorAll" name="filterOutdoor" value="all">
+                    </div>
+                </form>
+            </div>
+            <div class = "aantalVenues">
+                <p th:text="${aantalVenues}">aantal venues</p>
+            </div>
+        </div>
+        <div class="venuelist">
+            <div th:each="venue:${venues}">
+                <a class="buttonLook mediumButton"
+                   th:href="@{|/venuedetails/${venue.id}|}"
+                   th:text="${venue.venueName} + ${venue.getCapacity()}">venue name</a>
+            </div>
         </div>
     </div>
 </div>

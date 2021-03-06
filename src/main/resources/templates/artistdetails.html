@@ -2,38 +2,52 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Artistdetails</title>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}" href="../static/css/style.css"/>
+    <title>Let's Party!</title>
 </head>
 <body>
-    <div th:insert="fragments/header :: header">Header</div>
-    <div class="row1content" th:if="${artist}">
-        <h2 th:text="${artist.artistName}">artistdetails</h2>
+<div th:replace="fragments/header :: header">Header</div>
 
-        <div class="artistinfo"></div>
-        <div class = "row2">
-            <div class = "info">
-                <p class = "links">info: <a class="rechts" th:href = "@{|http://www.facebook.com/${artist.artistName}|}" th:text="|http://www.facebook.com/${artist.artistName}|"></a></p>
-            </div>
-            <div class = "genre">
-                <p class = "links">capaciteit:<p class="rechts" th:text="${artist.genre}">genre</p>
-            </div>
-            <div class = "bio">
-                <p class = "links">bio: <p class="rechts" th:text="${artist.bio}">bio</p>
-            </div>
-            <div class = "portfolio">
-                <p class = "links">portfolio: <p class="rechts" th:text="${artist.portfolio}">portfolio</p>
-            </div>
-        </div>
+
+<div class="row1">
+    <div class="row1content" th:if="${artist}">
+
         <div class="prevButtonDiv">
-            <a class="buttonLook smallButton" th:href="@{|/artistdetails/${nextArtist}|}">&gt;</a>
+            <a class="buttonLook smallButton" th:href="@{|/artistdetails/${prevId}|}">&lt;</a>
         </div>
         <div class="nextButtonDiv">
-            <a class="buttonLook smallButton" th:href="@{|/artistdetails/${prevArtist}|}"><</a>
+            <a class="buttonLook smallButton" th:href="@{|/artistdetails/${nextId}|}">&gt;</a>
         </div>
+
+        <h2 th:text="${artist.artistName}">artistdetails</h2>
+        <div class="venueinfo">
+            <div class="infoLine">
+                <div class="infoLineName">info:</div>
+                <div class="infoLineValue">
+                    <a th:href="${artist.linkMoreInfo}" th:text="${artist.linkMoreInfo}" target="_blank">linkMoreIfo</a>
+                </div>
+            </div>
+            <div class="infoLine">
+                <div class="infoLineName">genre:</div>
+                <div class="infoLineValue" th:text="${artist.genre}">genre</div>
+            </div>
+            <div class="infoLine">
+                <div class="infoLineName">portfolio:</div>
+                <div class="infoLineValue" th:text="${artist.portfolio}">portfolio</div>
+            </div>
+            <div class="infoLine">
+                <div class="infoLineName">bio:</div>
+                <div class="infoLineValue" th:text="${artist.bio}"></div>
+            </div>
+        </div>
+
     </div>
     <div class="row1content" th:unless="${artist}">
-        <p>no venue was chosen</p>
+        <p>no artist was chosen</p>
     </div>
-    <div th:replace="fragments/footer :: footer">Footer</div>
+</div>
+
+<div th:replace="fragments/footer :: footer">Footer</div>
+
 </body>
 </html>
