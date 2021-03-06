@@ -7,27 +7,23 @@ import javax.persistence.Id;
 @Entity
 public class Artist {
     @Id
-    private int Id;
-    @Column(length = 500)
+    private int id;
     private String artistName;
-    @Column(length = 500)
     private String linkMoreInfo;
-    @Column(length = 500)
     private String genre;
-    @Column(length = 500)
+    @Column(length=500)
     private String bio;
-    @Column(length = 500)
     private String portfolio;
 
     public Artist() {
     }
 
     public int getId() {
-        return Id;
+        return id;
     }
 
     public void setId(int id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getArtistName() {
@@ -69,16 +65,5 @@ public class Artist {
     public void setPortfolio(String portfolio) {
         this.portfolio = portfolio;
     }
-
-    @Override
-    public String toString() {
-        return "Artist{" +
-                "Id=" + Id +
-                ", artistName='" + artistName + '\'' +
-                ", linkMoreInfo='" + linkMoreInfo + '\'' +
-                ", genre='" + genre + '\'' +
-                ", bio='" + bio + '\'' +
-                ", portfolio='" + portfolio + '\'' +
-                '}';
-    }
 }
+
