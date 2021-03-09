@@ -35,10 +35,20 @@
                 <div class="infoLineName">Extra info :</div>
                 <div class="infoLineValue" th:text="${party.getExtraInfo()}"></div>
             </div>
-            <h2>Line-Up</h2>
-            <div class="row1" th:each="artist:${party.getArtists()}">
-                <div class="row1content">
-                    <a class="buttonLook mediumButton" th:text="${artist.artistName}" th:href="@{|/artistdetails/${artist.id}|}"></a>
+            <div th:if="${party.getArtists().size() != 0}">
+                <h2>Line-Up</h2>
+                <div class="row1" th:each="artist:${party.getArtists()}">
+                    <div class="row1content">
+                        <a class="buttonLook mediumButton" th:text="${artist.artistName}" th:href="@{|/artistdetails/${artist.id}|}"></a>
+                    </div>
+                </div>
+            </div>
+            <div th:if="${party.getAnimals().size() != 0}">
+                <h2>Wie Gaat?</h2>
+                <div class="row1" th:each="animal:${party.getAnimals()}">
+                    <div class="row1content">
+                        <a class="buttonLook mediumButton" th:text="${animal.name}"></a>
+                    </div>
                 </div>
             </div>
         </div>

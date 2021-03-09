@@ -40,6 +40,12 @@
                 <div class="infoLineValue" th:text="${artist.bio}"></div>
             </div>
         </div>
+        <h2>Featured</h2>
+        <div class="row1" th:each="party:${artist.getParties()}">
+            <div class="row1content">
+                <a class="buttonLook mediumButton" th:text="${party.name}" th:href="@{|/partydetails/${party.id}|}"></a>
+            </div>
+        </div>
 
     </div>
     <div class="row1content" th:unless="${artist}">
