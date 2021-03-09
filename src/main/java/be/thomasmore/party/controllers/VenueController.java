@@ -52,9 +52,9 @@ public class VenueController {
 
     @GetMapping("/venuelist/filter")
     public String venueListFilter(Model model, @RequestParam(required = false) Integer minCapacity, @RequestParam(required = false) Integer maxCapacity,
-                                  @RequestParam(required = false) String food, @RequestParam(required = false) String indoor,
-                                  @RequestParam(required = false) String outdoor, @RequestParam(required = false) Integer distance) {
-        logger.info(String.format("venueListFilter -- min%d", minCapacity));
+                                  @RequestParam(required = false) boolean food, @RequestParam(required = false) boolean indoor,
+                                  @RequestParam(required = false) boolean outdoor, @RequestParam(required = false) Integer distance) {
+        logger.info(String.format("venueListFilter -- distance %d", distance));
         ArrayList<Venue> venues2 = venueRepository.findByQuery(minCapacity, maxCapacity,distance,food,indoor,outdoor);
         int aantalVenues = venues2.size();
         model.addAttribute("venues", venues2);
