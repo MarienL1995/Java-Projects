@@ -116,4 +116,20 @@ public class Venue {
     public void setDistanceFromPublicTransportInKm(int distanceFromPublicTransportInKm) {
         this.distanceFromPublicTransportInKm = distanceFromPublicTransportInKm;
     }
+
+    @Override
+    public String toString() {
+        return "Venue{" +
+                "id=" + id +
+                ", venueName='" + venueName + '\'' +
+                ", linkMoreInfo='" + linkMoreInfo + '\'' +
+                ", capacity=" + capacity +
+                ", foodProvided=" + foodProvided +
+                ", indoor=" + indoor +
+                ", outdoor=" + outdoor +
+                ", freeParkingAvailable=" + freeParkingAvailable +
+                ", city='" + city + '\'' +
+                ", distanceFromPublicTransportInKm=" + distanceFromPublicTransportInKm +
+                '}';
+    }
 }
