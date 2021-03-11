@@ -47,7 +47,7 @@
                 <h2>Wie Gaat?</h2>
                 <div class="row1" th:each="animal:${party.getAnimals()}">
                     <div class="row1content">
-                        <a class="buttonLook mediumButton" th:text="${animal.name}"></a>
+                        <a class="buttonLook mediumButton" th:text="${animal.name}" th:href="@{|/animaldetails/${animal.id}|}"></a>
                     </div>
                 </div>
             </div>
