@@ -57,6 +57,12 @@
                 <div class="infoLineName">distance from public transport:</div>
                 <div class="infoLineValue" th:text="${venue.distanceFromPublicTransportInKm} + ' km'">city</div>
             </div>
+            <h2>Upcoming Parties</h2>
+            <div class="row1">
+                <div class="row1content" th:each="party:${lijstFeestjes}">
+                    <a class="buttonLook mediumButton" th:text="${party.name}" th:href="@{|/partydetails/${party.id}|}"></a>
+                </div>
+            </div>
         </div>
 
     </div>

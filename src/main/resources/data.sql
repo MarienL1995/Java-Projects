@@ -142,3 +142,75 @@ VALUES (
            8, 'Kryptonight',
            'Twee kerels die er al vijf jaar van houden om het publiek uit hun dak te zien gaan! Onze missie: Het leven is een feest en daar moet gedanst worden. Hoe doen we dat? Met onze Latin-, Dancehall- en een vleugje Commercialplaten voor alle leeftijden zorgen we voor ieder wat wils.',
            'Moombahton • Dancehall • Commercial', 'https://vi.be/platform/kryptonight', 'SOME GIG''s: Tomorrowland''s Dreamville, MnM Start to Dj Finalist Flowtrack Summer Camp Casa Blanca Festival Sunrise Festival Red ''n Blue Café Local Noxx Publik Vice Festival KdG TD ...');
+
+INSERT INTO PARTY
+(ID, name, price_presale_in_eur, price_in_eur, extra_info, date, doors,
+ venue_Id)
+VALUES
+(1, 'Big Spring Party', 6, 10, '1 cocktail included',
+ '2021-03-21', '10:00', 1);
+
+INSERT INTO PARTY
+(ID, name, price_presale_in_eur, price_in_eur, extra_info, date, doors,
+ venue_Id)
+VALUES
+(2, 'Liberty 2021', 4, 6, 'free vestiaire, viplounge',
+ '2021-04-3', '22:00', 2);
+
+INSERT INTO PARTY
+(ID, name, price_presale_in_eur, price_in_eur, extra_info, date, doors,
+ venue_Id)
+VALUES
+(3, 'Uppercuts', null, null, ' ',
+ '2021-03-14', '21:00', 4);
+
+INSERT INTO PARTY
+(ID, name, price_presale_in_eur, price_in_eur, extra_info, date, doors,
+ venue_Id)
+VALUES
+(4, 'Zoetzuur', null, null, 'Zoete house / Zure techno',
+ '2021-03-21', '21:00', 4);
+
+INSERT INTO PARTY
+(ID, name, price_presale_in_eur, price_in_eur, extra_info, date, doors,
+ venue_Id)
+VALUES
+(5, 'Oldies but Goldies', null, null, 'afterparty@home van THE BOX!',
+ '2020-03-28', '21:00', 4);
+
+INSERT INTO PARTY_ARTISTS (PARTIES_ID, ARTISTS_ID) VALUES (1, 1);
+INSERT INTO PARTY_ARTISTS (PARTIES_ID, ARTISTS_ID) VALUES (1, 2);
+INSERT INTO PARTY_ARTISTS (PARTIES_ID, ARTISTS_ID) VALUES (2, 2);
+INSERT INTO PARTY_ARTISTS (PARTIES_ID, ARTISTS_ID) VALUES (3, 3);
+INSERT INTO PARTY_ARTISTS (PARTIES_ID, ARTISTS_ID) VALUES (3, 5);
+INSERT INTO PARTY_ARTISTS (PARTIES_ID, ARTISTS_ID) VALUES (4, 5);
+
+INSERT INTO ANIMAL
+(id,name,city,bio)
+VALUES(1,'Zingende Zalm','Mechelen','Blub blub blub');
+
+INSERT INTO ANIMAL
+(id,name,city,bio)
+VALUES(2,'Roestig Rendier','Reet','Balk Balk Balk');
+
+INSERT INTO ANIMAL
+(id,name,city,bio)
+VALUES(3,'Buffel Van Duffel','Duffel','Meuh Meuh Meuh');
+
+INSERT INTO ANIMAL
+(id,name,city,bio)
+VALUES(4,'Spin Van Malines','Mechelen','Spin Spin Spin');
+
+INSERT INTO ANIMAL
+(id,name,city,bio)
+VALUES(5,'Rokende Regenworm','Zemst','Kuch Kuch Kuch');
+
+INSERT INTO ANIMAL_FEESTJES (FEESTJES_ID,ANIMALS_ID) VALUES(1,2);
+INSERT INTO ANIMAL_FEESTJES (FEESTJES_ID,ANIMALS_ID) VALUES(1,3);
+INSERT INTO ANIMAL_FEESTJES (FEESTJES_ID,ANIMALS_ID) VALUES(2,5);
+INSERT INTO ANIMAL_FEESTJES (FEESTJES_ID,ANIMALS_ID) VALUES(3,4);
+INSERT INTO ANIMAL_FEESTJES (FEESTJES_ID,ANIMALS_ID) VALUES(4,5);
+INSERT INTO ANIMAL_FEESTJES (FEESTJES_ID,ANIMALS_ID) VALUES(2,3);
+INSERT INTO ANIMAL_FEESTJES (FEESTJES_ID,ANIMALS_ID) VALUES(4,3);
+INSERT INTO ANIMAL_FEESTJES (FEESTJES_ID,ANIMALS_ID) VALUES(2,1);
+INSERT INTO ANIMAL_FEESTJES (FEESTJES_ID,ANIMALS_ID) VALUES(5,1);
