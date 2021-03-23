@@ -9,6 +9,9 @@
     <div th:replace="fragments/header :: header">Header</div>
     <div class="row1">
         <div class="row1content" th:if="${party}">
+            <div class="editButton">
+                <a class="buttonLook mediumButton" th:href="@{|/admin/partyedit/${party.id}|}">Edit</a>
+            </div>
             <div class="prevButtonDiv">
                 <a class="buttonLook smallButton" th:href="@{|/partydetails/${prevId}|}">&lt;</a>
             </div>
@@ -17,7 +20,7 @@
             </div>
 
             <h2 th:text="${party.name}">Party details</h2>
-            <h3 th:text="|${party.getDate()} in |">Party Date</h3>
+            <h3 th:text="|${#dates.format(party.getDate(), 'dd/MM/yyyy')} in |">Party Date</h3>
             <a th:text="${party.getVenue().venueName}" th:href="@{|/venuedetails/${party.getVenue().id}|}"></a>
             <div class="infoLine" th:if="${party.getPricePresaleInEur() != null}">
                 <div class="infoLineName">prijs :</div>
@@ -29,7 +32,7 @@
             </div>
             <div class="infoLine">
                 <div class="infoLineName">Doors :</div>
-                <div class="infoLineValue" th:text="${party.getDoors()}"></div>
+                <div class="infoLineValue" th:text="${#dates.format(party.getDoors(),'HH:mm')}"></div>
             </div>
             <div class="infoLine" th:if="${party.getExtraInfo() != null}">
                 <div class="infoLineName">Extra info :</div>

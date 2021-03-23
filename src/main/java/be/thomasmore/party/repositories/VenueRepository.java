@@ -5,10 +5,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public interface VenueRepository extends CrudRepository<Venue, Integer> {
     Iterable<Venue> findByOutdoor(boolean isOutdoor);
-
+    List<Venue> findAll();
     Iterable<Venue> findByIndoor(boolean isIndoor);
 
     @Query("select v from Venue v where (?1 is null or v.capacity >= ?1) "

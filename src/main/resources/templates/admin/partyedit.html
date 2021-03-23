@@ -1,0 +1,39 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}" href="../../static/css/style.css"/>
+    <title>PartyEdit</title>
+</head>
+<body>
+    <div th:replace="fragments/header :: header">Header</div>
+    <div class="row1">
+        <div class="row1content" th:object="${party}">
+            <div class="cancelButton">
+                <a class="buttonLook mediumButton" th:href="@{|/partydetails/*{id}|}">cancel</a>
+            </div>
+            <div class="error" th:if="${#fields.hasErrors('*')}">ERROR - alles invullen !</div>
+            <h2 th:text="*{name}">Party details</h2>
+            <h3 th:text="|*{#dates.format(date , 'dd/MM/yyyy')} in |">Party Date</h3>
+            <a th:text="*{venue.venueName}" th:href="@{|/venuedetails/*{venue.id}|}"></a>
+            <form  th:action="@{|/admin/partyedit/*{id}|}"  method="post" class="infoLine">
+                <label for="veranderNaam"></label>
+                <input type="text" id="veranderNaam" th:field="*{name}" th:errorclass="fieldError">
+                <label for="veranderPresale"></label>
+                <select id="venues" name="venue" >
+                        <option th:each="venu : ${venues}" th:value="${venu.id}" th:text="${venu.venueName}" th:selected="${party.venue.id == venu.id}" ></option>
+                </select>
+                <input type="number" id="veranderPresale" th:field="*{pricePresaleInEur}" th:errorclass="fieldError">
+                <label for="veranderPrijs"></label>
+                <input type="number" id="veranderPrijs" th:field="*{priceInEur}" th:errorclass="fieldError">
+                <label for="date">date <i>(dd/MM/yyyy)</i>:</label>
+                <input id="date" th:field="*{date}" th:errorclass="fieldError">
+                <label for="veranderExtraInfo"></label>
+                <textarea id="veranderExtraInfo" th:field="*{extraInfo}" th:errorclass="fieldError"></textarea>
+                <button type="submit" value="save">save</button>
+            </form>
+        </div>
+    </div>
+    <div th:replace="fragments/footer :: footer">Footer</div>
+</body>
+</html>
